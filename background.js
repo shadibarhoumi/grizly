@@ -1,6 +1,5 @@
 // initialize db
 console.log('running...');
-console.log(auth);
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
