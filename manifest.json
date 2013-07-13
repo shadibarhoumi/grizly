@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' https://grizly.firebaseio.com https://s-dal5-nss-6.firebaseio.com; object-src 'self'",
+  "name": "Grizly",
+  "description": "Easily share links with friends and coworkers.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "bear38.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "page": "background.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["jquery.js", "content.js"]
+    }
+  ],
+  "permissions": [
+    "notifications",
+    "storage"
+  ],
+  "web_accessible_resources": [
+    "bear38.png"
+  ]
+}

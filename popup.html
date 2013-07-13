@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Grizly</title>
+
+    <link rel="stylesheet" href="popup.css">
+    <script src='firebase.js'></script>
+    <script src='firebase-simple-login.js'></script>
+    <script src="jquery.js"></script>
+    <script src="popup.js"></script>
+
+  </head>
+
+  <body>
+
+  	<div id="signup">
+  		<p>Sign Up with Grizly for Instant Link Sharing.</p>
+  		<input class="email" type="text" placeholder="name@email.com">
+  		<input class="password" type="password" placeholder="password">
+    	<button id="signup-button">Sign Up</button><a id="login-link" href="#">Or Log In</a>
+  	</div>
+
+  	<div id="login" class="hidden">
+  		<p>Log In to Grizly.</p>
+  		<input class="email" type="text" placeholder="name@email.com">
+  		<input class="password" type="password" placeholder="password">
+  		<button id="signup-button">Log In</button><a id="signup-link" href="#">Or Sign Up</a>
+  	</div>
+
+  	<div id="user" class="hidden">
+  		<p>Logged in as <span id="current-user"></span></p>
+  		<button id="logout">Logout</button>
+  	</div>
+    
+  </body>
+</html>
+
