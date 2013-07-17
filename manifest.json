@@ -6,7 +6,7 @@
   "version": "1.0",
 
   "browser_action": {
-    "default_icon": "bear38.png",
+    "default_icon": "one.png",
     "default_popup": "popup.html"
   },
   "background": {
@@ -23,6 +23,6 @@
     "storage"
   ],
   "web_accessible_resources": [
-    "bear38.png"
+    "one.png"
   ]
 }

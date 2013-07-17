@@ -1,9 +1,9 @@
 $(function() {
-	console.log('sending message from content script!');
-	chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-		console.log('now logging response');
-	  console.log(response.farewell);
-	});
+	// console.log('sending message from content script!');
+	// chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+	// 	console.log('now logging response');
+	//   console.log(response.farewell);
+	// });
 
 
 	// chrome.runtime.onMessage.addListener(
