@@ -1,0 +1,10 @@
+account for multiple emails in friend bucket...maybe use hidden div or something
+
+display email instead of firebaseUsername in sender field in history list
+ditto in the notification
+
+when i log in with google the old notifications pop up! oh no!
+
+check that user is in database
+send link to user's email if they aren't in the database
+contact autosuggestion

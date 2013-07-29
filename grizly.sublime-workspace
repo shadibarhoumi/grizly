@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"recipient",
+				"recipientEmail"
+			],
+			[
+				"notifica",
+				"notificationRandomId"
+			],
+			[
+				"add-fi",
+				"add-friend-form"
+			],
+			[
 				"photo",
 				"photoDivs"
 			],
@@ -107,6 +119,62 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "background.js",
+			"settings":
+			{
+				"buffer_size": 2059,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "popup.js",
+			"settings":
+			{
+				"buffer_size": 10468,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "TODO",
+			"settings":
+			{
+				"buffer_size": 357,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "notification.html",
+			"settings":
+			{
+				"buffer_size": 400,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "notification.js",
+			"settings":
+			{
+				"buffer_size": 652,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "popup.html",
+			"settings":
+			{
+				"buffer_size": 1747,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "manifest.json",
+			"settings":
+			{
+				"buffer_size": 811,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -144,6 +212,13 @@
 	},
 	"file_history":
 	[
+		"/home/shadi/chrome/grizly/popup.js",
+		"/home/shadi/chrome/grizly/content.js",
+		"/home/shadi/chrome/grizly/background.html",
+		"/home/shadi/chrome/grizly/manifest.json",
+		"/home/shadi/chrome/grizly/background.js",
+		"/home/shadi/chrome/grizly/popup.html",
+		"/home/shadi/chrome/grizly/popup.css",
 		"/home/shadi/compass/app/assets/javascripts/sign_up.js",
 		"/home/shadi/compass/config/routes.rb",
 		"/home/shadi/compass/Gemfile",
@@ -264,14 +339,7 @@
 		"/home/shadi/res/mchlrn/octave/assignments/ex2/plotDecisionBoundary.m",
 		"/home/shadi/js/meteor/Boydku/.meteor/local/build/app/packages/livedata/node_modules/sockjs/node_modules/faye-websocket/lib/faye/websocket/api.js",
 		"/home/shadi/js/meteor/Boydku/client/views/facebook_stream/facebook_stream.js",
-		"/home/shadi/Desktop/boydku.less",
-		"/home/shadi/Desktop/badhaiku.js",
-		"/home/shadi/js/meteor/Boydku/client/lib/haiku.js",
-		"/home/shadi/js/meteor/Boydku/client/lib/api/haiku.js",
-		"/home/shadi/js/meteor/Boydku/client/views/send_SMS/send_SMS.html",
-		"/home/shadi/js/meteor/Boydku/client/views/send_SMS/send_SMS.js",
-		"/home/shadi/js/meteor/Boydku/client/views/haiku/haiku.html",
-		"/home/shadi/js/meteor/Boydku/client/views/haiku/haiku.js"
+		"/home/shadi/Desktop/boydku.less"
 	],
 	"find":
 	{
@@ -279,9 +347,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			"/home/shadi/chrome/grizly/",
 			"/home/shadi/compass/",
 			"/home/shadi/edYOU/",
 			"/home/shadi/edYOU/app/",
@@ -294,6 +363,42 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"username",
+			"usernames",
+			"emailToUsername",
+			"LISTEN",
+			"action",
+			"username",
+			"LISTEN",
+			"grizlyUsername",
+			"ret",
+			"grizlyUsername",
+			"swag",
+			"p",
+			"<p",
+			"<p class=\"title\"></p>",
+			"sender",
+			");\n",
+			"getParameterByName",
+			"logout",
+			"value",
+			"child",
+			"usernames",
+			"append",
+			"reciever",
+			"#signup",
+			"margin",
+			"c;",
+			"2",
+			"friend-name",
+			"send",
+			",",
+			"response",
+			"console.log",
+			"request:",
+			"logout-button",
+			"login",
+			"current",
 			"pic",
 			"b",
 			"strong",
@@ -385,43 +490,7 @@
 			"friend",
 			"ction",
 			"geon",
-			"''",
-			"ssion",
-			"$",
-			"sylls",
-			"^",
-			"re",
-			"chosenWordSyllables",
-			"syllables_left",
-			"indent",
-			"chosen_word_syllables",
-			"chosen_word",
-			"chosen_record",
-			"current_syllables",
-			"max_syllables",
-			"line_syllables",
-			"max_syllables",
-			"words",
-			"getWordSylla",
-			"addedBank",
-			"query",
-			"$button-color",
-			"button",
-			"transition",
-			"Lato",
-			"#D83C3C",
-			"wrap",
-			"<% ",
-			"c_path",
-			"c_user",
-			"\\[\\e[0;35m\\]",
-			"36m",
-			"\\[\\e[0;36m\\]",
-			"$s ",
-			"$s",
-			"      ",
-			"$SI",
-			"state"
+			"''"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -429,6 +498,8 @@
 		"regex": true,
 		"replace_history":
 		[
+			"emailToFirebaseUsername",
+			"firebaseUsername",
 			"#",
 			"SWAGADOCIOUS",
 			"user",
@@ -449,13 +520,201 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
-			]
-		},
-		{
-			"sheets":
-			[
+				{
+					"buffer": 0,
+					"file": "background.js",
+					"settings":
+					{
+						"buffer_size": 2059,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								635,
+								635
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 225.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "popup.js",
+					"settings":
+					{
+						"buffer_size": 10468,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9141,
+								9141
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2670.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "TODO",
+					"settings":
+					{
+						"buffer_size": 357,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								357,
+								357
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "notification.html",
+					"settings":
+					{
+						"buffer_size": 400,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								93,
+								93
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "notification.js",
+					"settings":
+					{
+						"buffer_size": 652,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								652,
+								652
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "popup.html",
+					"settings":
+					{
+						"buffer_size": 1747,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								566,
+								566
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "manifest.json",
+					"settings":
+					{
+						"buffer_size": 811,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								584,
+								584
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -476,18 +735,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
@@ -507,6 +759,38 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"pop",
+				"popup.js"
+			],
+			[
+				"manifes",
+				"manifest.json"
+			],
+			[
+				"popu",
+				"popup.html"
+			],
+			[
+				"popht",
+				"popup.html"
+			],
+			[
+				"backg",
+				"background.html"
+			],
+			[
+				"popup",
+				"popup.css"
+			],
+			[
+				"mani",
+				"manifest.json"
+			],
+			[
+				"back",
+				"background.js"
+			],
 			[
 				"school",
 				"app/models/school.rb"
@@ -978,6 +1262,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 158.0,
+	"side_bar_width": 117.0,
 	"status_bar_visible": true
 }

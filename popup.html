@@ -5,8 +5,8 @@
 
     <link rel="stylesheet" href="popup.css">
     <script src='firebase.js'></script>
-    <script src='firebase-simple-login.js'></script>
     <script src="jquery.js"></script>
+    <script src="oauth2/oauth2.js"></script>
     <script src="popup.js"></script>
 
   </head>
@@ -18,7 +18,12 @@
   		<div class="error"></div>
   		<input class="username" type="text" placeholder="username">
   		<input class="password" type="password" placeholder="password">
-    	<button id="signup-button">Sign Up</button><a id="login-link" href="#">Or Log In</a>
+    	<div>
+        <button id="signup-button">Sign Up</button><a id="login-link" href="#">Or Log In</a>
+      </div>
+      <div>
+        <button class="google-login">Login with Google</button>
+      </div>
   	</div>
 
   	<div id="login" class="hidden">
@@ -30,14 +35,26 @@
   	</div>
 
   	<div id="user" class="hidden">
-  		<p>Logged in as <span id="current-user"></span></p>
-  		<button id="logout">Logout</button>
+  		<div class="current">
+        Logged in as <span class="current-user"></span>
+  		  <button class="logout-button">Logout</button>
+      </div>
 
-  		<div class="send">
-  			<input class="recipient" type="type" placeholder="recipient username">
-  			<input class="link" type="text" placeholder="link">
-  			<button class="submit">Send</button>
-  		</div>
+      <div class="friends">
+        <p>Friends</p>
+        <a class="add-friend" href="#">Add Friend</a>
+        <div class="add-friend-form hidden">
+          <input class="friend-names", placeholder="friend names">
+          <a class="add-friend-submit" href="#">Add!</a>
+        </div>
+        <ul class="list"></ul>
+      </div>
+
+      <div class="history">
+        <p>History</p>
+        <ul class="list"></ul>
+      </div>
+
   	</div>
     
   </body>
