@@ -123,7 +123,7 @@
 			"file": "background.js",
 			"settings":
 			{
-				"buffer_size": 2059,
+				"buffer_size": 5610,
 				"line_ending": "Unix"
 			}
 		},
@@ -131,31 +131,7 @@
 			"file": "popup.js",
 			"settings":
 			{
-				"buffer_size": 10468,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "TODO",
-			"settings":
-			{
-				"buffer_size": 357,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "notification.html",
-			"settings":
-			{
-				"buffer_size": 400,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "notification.js",
-			"settings":
-			{
-				"buffer_size": 652,
+				"buffer_size": 7815,
 				"line_ending": "Unix"
 			}
 		},
@@ -163,15 +139,31 @@
 			"file": "popup.html",
 			"settings":
 			{
-				"buffer_size": 1747,
+				"buffer_size": 1720,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "manifest.json",
+			"file": "background.html",
 			"settings":
 			{
-				"buffer_size": 811,
+				"buffer_size": 167,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "TODO",
+			"settings":
+			{
+				"buffer_size": 658,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "    $('.google-login').click(function() {\n        bg.console.log('clicked google login button');\n        // create oauth object\n        var googleAuth = new OAuth2('google', {\n            client_id: '394925537192.apps.googleusercontent.com',\n            client_secret: '4bh05CW5FR5Q2CNANRbCPxuU',\n            api_scope: 'https://www.googleapis.com/auth/userinfo.email'\n        });\n\n        // authenticate user\n        googleAuth.authorize(function() {\n            // We should now have googleAuth.getAccessToken() returning a valid token value for us \n            // Create an XMLHttpRequest to get the email address \n            var xhr = new XMLHttpRequest();\n\n            xhr.onreadystatechange = function() {\n                bg.console.log('xhr came back!'); \n                if( xhr.readyState == 4 && xhr.status === 200 ) {\n                    var parseResult = JSON.parse(xhr.responseText);\n                    bg.console.log('email');\n                    // get email address \n                    var email = parseResult[\"email\"];\n                    // since username is going to be in firebase url, replace @ and . with AT and DOT\n                    var firebaseUsername = emailToFirebaseUsername(email);\n                    bg.console.log('firebase username: ', firebaseUsername);\n                    // store email in localStorage so user is signed in\n                    bg.console.log('wrote user', firebaseUsername, 'to localstorage');\n                    chrome.storage.sync.set({ user: {firebaseUsername: firebaseUsername, email: email} });\n\n                    // tell background to listen for links for this username\n                    chrome.runtime.sendMessage({action: 'LISTEN', firebaseUsername: firebaseUsername}, function(response) {\n                        bg.console.log('[POPUP]', response.message);\n                    });\n\n                    // show user view\n                    $('#signup').addClass('hidden');\n                    $('#user .current-user').text(email);\n                    $('#user').removeClass('hidden');\n                } else {\n                    bg.console.log('got a different xhr than expected, here it is: ', xhr);\n                }\n            };\n\n            xhr.open(\"GET\",\"https://www.googleapis.com/oauth2/v1/userinfo\", true);\n            // Set the content & autherization \n            xhr.setRequestHeader('Content-Type', 'application/json');\n            xhr.setRequestHeader('Authorization', \"OAuth \" + googleAuth.getAccessToken() );\n            bg.console.log('sending xhr!');\n            xhr.send(null);\n        });\n    });",
+			"settings":
+			{
+				"buffer_size": 2594,
 				"line_ending": "Unix"
 			}
 		}
@@ -212,12 +204,16 @@
 	},
 	"file_history":
 	[
+		"/home/shadi/chrome/grizly/popup.html",
 		"/home/shadi/chrome/grizly/popup.js",
+		"/home/shadi/chrome/grizly/background.js",
+		"/home/shadi/chrome/grizly/TODO",
+		"/home/shadi/chrome/grizly/notification.html",
+		"/home/shadi/chrome/grizly/notification.js",
+		"/home/shadi/chrome/grizly/manifest.json",
+		"/home/shadi/chrome/grizly/scrap.js",
 		"/home/shadi/chrome/grizly/content.js",
 		"/home/shadi/chrome/grizly/background.html",
-		"/home/shadi/chrome/grizly/manifest.json",
-		"/home/shadi/chrome/grizly/background.js",
-		"/home/shadi/chrome/grizly/popup.html",
 		"/home/shadi/chrome/grizly/popup.css",
 		"/home/shadi/compass/app/assets/javascripts/sign_up.js",
 		"/home/shadi/compass/config/routes.rb",
@@ -335,11 +331,7 @@
 		"/home/shadi/edYOU/db/migrate/20130626181517_remove_interests_reference_from_students.rb",
 		"/home/shadi/edYOU/app/assets/stylesheets/reset.css",
 		"/home/shadi/edYOU/app/assets/stylesheets/normalize.css",
-		"/home/shadi/res/mchlrn/octave/assignments/ex2/plotData.m",
-		"/home/shadi/res/mchlrn/octave/assignments/ex2/plotDecisionBoundary.m",
-		"/home/shadi/js/meteor/Boydku/.meteor/local/build/app/packages/livedata/node_modules/sockjs/node_modules/faye-websocket/lib/faye/websocket/api.js",
-		"/home/shadi/js/meteor/Boydku/client/views/facebook_stream/facebook_stream.js",
-		"/home/shadi/Desktop/boydku.less"
+		"/home/shadi/res/mchlrn/octave/assignments/ex2/plotData.m"
 	],
 	"find":
 	{
@@ -347,7 +339,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"/home/shadi/chrome/grizly/",
@@ -363,6 +355,16 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"currentUserRef",
+			"    \n",
+			"userFriendsRef",
+			"linkObject",
+			"listen",
+			"listen(",
+			"sendResponse",
+			"emailToFire",
+			"bg.console",
+			"[POP",
 			"username",
 			"usernames",
 			"emailToUsername",
@@ -480,17 +482,7 @@
 			"console",
 			"syl",
 			"ed",
-			"ide",
-			"ssion",
-			"maxSyllablesInDB",
-			"maxSyllables",
-			"maxSyllablesInDB",
-			"ome",
-			"peo",
-			"friend",
-			"ction",
-			"geon",
-			"''"
+			"ide"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -520,7 +512,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -528,42 +520,15 @@
 					"file": "background.js",
 					"settings":
 					{
-						"buffer_size": 2059,
+						"buffer_size": 5610,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								635,
-								635
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 225.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "popup.js",
-					"settings":
-					{
-						"buffer_size": 10468,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9141,
-								9141
+								821,
+								821
 							]
 						],
 						"settings":
@@ -573,106 +538,53 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2670.0,
+						"translation.y": 495.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "popup.js",
+					"settings":
+					{
+						"buffer_size": 7815,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2354,
+								2354
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 150.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "TODO",
-					"settings":
-					{
-						"buffer_size": 357,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								357,
-								357
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "notification.html",
-					"settings":
-					{
-						"buffer_size": 400,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								93,
-								93
-							]
-						],
-						"settings":
-						{
-							"auto_name": "",
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "notification.js",
-					"settings":
-					{
-						"buffer_size": 652,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								652,
-								652
-							]
-						],
-						"settings":
-						{
-							"auto_name": "",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "popup.html",
 					"settings":
 					{
-						"buffer_size": 1747,
+						"buffer_size": 1720,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								566,
-								566
+								181,
+								181
 							]
 						],
 						"settings":
@@ -688,25 +600,76 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "manifest.json",
+					"buffer": 3,
+					"file": "background.html",
 					"settings":
 					{
-						"buffer_size": 811,
+						"buffer_size": 167,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								584,
-								584
+								120,
+								120
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "TODO",
+					"settings":
+					{
+						"buffer_size": 658,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								307,
+								307
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"settings":
+					{
+						"buffer_size": 2594,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2058,
+								2058
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -760,16 +723,36 @@
 		"selected_items":
 		[
 			[
+				"todo",
+				"TODO"
+			],
+			[
+				"bac",
+				"background.html"
+			],
+			[
+				"popup.ht",
+				"popup.html"
+			],
+			[
+				"popup.js",
+				"popup.js"
+			],
+			[
+				"popu",
+				"popup.html"
+			],
+			[
+				"popup.html",
+				"popup.html"
+			],
+			[
 				"pop",
 				"popup.js"
 			],
 			[
 				"manifes",
 				"manifest.json"
-			],
-			[
-				"popu",
-				"popup.html"
 			],
 			[
 				"popht",
@@ -1262,6 +1245,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 117.0,
+	"side_bar_width": 50.0,
 	"status_bar_visible": true
 }

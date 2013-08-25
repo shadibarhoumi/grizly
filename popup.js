@@ -6,7 +6,7 @@ $(function() {
         return email;
     };
 
-    // on open
+    ///////// ON EXTENSION STARTUP //////
     var bg = chrome.extension.getBackgroundPage();
     var firebaseUsername = null;
 
@@ -26,6 +26,7 @@ $(function() {
             // if signed in, display user view
             chrome.runtime.sendMessage({action: 'GET HISTORY'}, function(response) {
                 // get history from background page and fill history list with it
+                bg.console.log('filling history from background!');
                 for (var i = 0; i < response.history.length; i++) {
                     var li = $('<li/>');
                     var a = $('<a/>').attr('href', response.history[i].link).html(response.history[i].link);
@@ -34,16 +35,17 @@ $(function() {
                 }
             });
 
-            // fill friends list
-            userFriendsRef = new Firebase('https://grizly.firebaseio.com/users/' + user.firebaseUsername + '/friends');
-            userFriendsRef.on('child_added', function(snapshot) {
-                var friend = snapshot.val();
-                bg.console.log('friend', friend);
-                // fill friends view with friend send buttons
-                var button = $('<button/>').html(friend.emails.join(' & ')).addClass('friend');
-                // button.append($('<input/>').attr('type', 'hidden').html(friendId));
-                $('.friends .list').prepend(button);
+            // get friend list from background page and fill friends list
+            chrome.runtime.sendMessage({ action: 'GET FRIENDS' }, function(response) {
+                bg.console.log('filling friends from background');
+                for (var i = 0; i < response.friends.length; i++) {
+                    var friend = response.friends[i];
+                    var button = $('<button/>').html(friend.emails.join(' & ')).addClass('friend');
+                    // button.data('usernames', JSON.stringify(friend.usernames));
+                    $('.friends .list').prepend(button);    
+                }
             });
+
         } else {
             // nothing needs to be here since signup is shown by default
             bg.console.log('[POPUP]', 'no user logged in');
@@ -51,137 +53,45 @@ $(function() {
         }
     });
     
+    ////// LOGIN WITH GOOGLE /////
     $('.google-login').click(function() {
-        bg.console.log('clicked google login button');
-        // create oauth object
-        var googleAuth = new OAuth2('google', {
-            client_id: '394925537192.apps.googleusercontent.com',
-            client_secret: '4bh05CW5FR5Q2CNANRbCPxuU',
-            api_scope: 'https://www.googleapis.com/auth/userinfo.email'
-        });
-
-        // authenticate user
-        googleAuth.authorize(function() {
-            // We should now have googleAuth.getAccessToken() returning a valid token value for us 
-            // Create an XMLHttpRequest to get the email address 
-            var xhr = new XMLHttpRequest();
-
-            xhr.onreadystatechange = function() {
-                bg.console.log('xhr came back!'); 
-                if( xhr.readyState == 4 && xhr.status === 200 ) {
-                    var parseResult = JSON.parse(xhr.responseText);
-                    bg.console.log('email');
-                    // get email address 
-                    var email = parseResult["email"];
-                    // since username is going to be in firebase url, replace @ and . with AT and DOT
-                    var firebaseUsername = emailToFirebaseUsername(email);
-                    bg.console.log('firebase username: ', firebaseUsername);
-                    // store email in localStorage so user is signed in
-                    bg.console.log('wrote user', firebaseUsername, 'to localstorage');
-                    chrome.storage.sync.set({ user: {firebaseUsername: firebaseUsername, email: email} });
-
-                    // tell background to listen for links for this username
-                    chrome.runtime.sendMessage({action: 'LISTEN', firebaseUsername: firebaseUsername}, function(response) {
-                        bg.console.log('[POPUP]', response.message);
-                    });
-
-                    // show user view
-                    $('#signup .username').val(''); // TODO remove
-                    $('#signup').addClass('hidden');
-                    $('#user .current-user').text(email);
-                    $('#user').removeClass('hidden');
-                }
-            };
-
-            xhr.open("GET","https://www.googleapis.com/oauth2/v1/userinfo", true);
-            // Set the content & autherization 
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.setRequestHeader('Authorization', "OAuth " + googleAuth.getAccessToken() );
-            bg.console.log('sending xhr!');
-            xhr.send(null);
-        });
-    });
-
-    // events
-    $('#signup-button').click(function() {
-        // grab username and password
-        var username = $('#signup .username').val();
-        var password = $('#signup .password').val();
-        var newUser = new Firebase('https://grizly.firebaseio.com/users/' + username);
-        // check that username isn't taken
-        newUser.once('value', function(snapshot) {
-            // if snapshot is null, name is available
-            if (snapshot.val() === null) {
-                // insert into firebase w/unique username as key
-                newUser.set({password: password, links: []});
-                // store username in chrome
-                chrome.storage.sync.set({firebaseUsername: username});
-
-                // tell background to listen for links for this username
-                chrome.runtime.sendMessage({action: 'LISTEN', username: username}, function(response) {
-                    bg.console.log('[POPUP]', response.message);
-                });
-
-                // clear username
-                $('#signup .username').val('');
+        chrome.runtime.sendMessage({action: 'AUTHENTICATE'}, function(response) {
+            if (response.message === 'SUCCESS') {
+                bg.console.log('Successfully logged in as', response.email);
+                 // show user view
                 $('#signup').addClass('hidden');
-                $('#user .current-user').text(username);
+                $('#user .current-user').text(response.email);
                 $('#user').removeClass('hidden');
-            } else {
-                $('#signup .error').text('Username ' + username + ' is already taken.');
-            }
-            // clear out password field after every click
-            $('.password').val('');
-        });
-
-    });
-
-    $('#login-button').click(function() {
-        var username = $('#login .username').val();
-        var password = $('#login .password').val();
-        var userPassword = new Firebase('https://grizly.firebaseio.com/users/' + username + '/password');
-
-         userPassword.once('value', function(snapshot) {
-            if (snapshot.val() === password) {
-                // store username in chrome
-                chrome.storage.sync.set({firebaseUsername: username});
-
-                // tell background to listen for links for this username
-                chrome.runtime.sendMessage({username: username}, function(response) {
-                    bg.console.log('[POPUP]', response.message);
+                // get history from firebase on login because it hasn't been loaded into background array yet!
+                linkRef = new Firebase('https://grizly.firebaseio.com/users/' + response.firebaseUsername + '/links');
+                linkRef.on('value', function(snapshot) {
+                    bg.console.log('filling history on value');
+                    $('#user .history .list').html(''); // clear out history list
+                    for (var linkObject in snapshot.val()) { // fill hist list with links
+                        var li = $('<li/>');
+                        var a = $('<a/>').attr('href', snapshot.val()[linkObject].link).html(snapshot.val()[linkObject].link);
+                        var text = 'Sender: ' + snapshot.val()[linkObject].sender + ' ';
+                        $('#user .history .list').prepend(li.append(text, a));
+                    }
                 });
-
-                // clear username
-                $('#login .username').val('');
-                $('#login').addClass('hidden');
-                $('#user .current-user').text(username);
-                $('#user').removeClass('hidden');
+                // fill friends list
+                friendsRef = new Firebase('https://grizly.firebaseio.com/users/' + response.firebaseUsername + '/friends');
+                friendsRef.on('value', function(snapshot) {
+                    bg.console.log('filling friends on value');
+                    $('#user .friends .list').html(''); // clear out friends list
+                    for (var friendObject in snapshot.val()) {
+                        var friend = snapshot.val()[friendObject];
+                        // fill friends view with friend send buttons
+                        var button = $('<button/>').html(friend.emails.join(' & ')).addClass('friend');
+                        // button.append($('<input/>').attr('type', 'hidden').html(friendId));
+                        $('.friends .list').prepend(button);
+                    }
+                });
             } else {
-                $('#login .error').text('Incorrect username and/or password.');
+                bg.console.log('holy shit something went wrong!');
             }
-            // clear out password field after every click
-            $('.password').val('');
         });
     });
-
-    $('a#login-link').click(function() {
-        $('#signup').addClass('hidden');
-        $('#user').addClass('hidden');
-
-        $('#login .error').text('');
-        $('#login .username').val('');
-        $('#login').removeClass('hidden');
-    });
-
-    $('a#signup-link').click(function() {
-        $('#user').addClass('hidden');
-        $('#login').addClass('hidden');
-
-        $('#signup .error').text('');
-        $('#signup .username').val('');
-        $('#signup').removeClass('hidden');
-    });
-
 
     ////////////// USER VIEW //////////////////
     $('.add-friend').click(function() {
@@ -216,7 +126,7 @@ $(function() {
             var title = tab.title;
             bg.console.log('current tab data', tab);
             chrome.storage.sync.get('user', function(ret) {
-                recipientDataRef.push({sender: ret.user.firebaseUsername,
+                recipientDataRef.push({sender: ret.user.email,
                                        title: title,
                                        link: currentUrl,
                                        createdAt: Date.now()});
@@ -225,12 +135,18 @@ $(function() {
         });
     });
 
+    // logout event
     $('.logout-button').click(function() {
-        // set username to null
-        chrome.storage.sync.set({'firebaseUsername': null});
-        $('#user').addClass('hidden');
-        $('#signup .error').text('');
-        $('#signup .username').val('');
-        $('#signup').removeClass('hidden');
+        bg.console.log('[POPUP]: user logging out, setting firebase username to null');
+        chrome.runtime.sendMessage({action: 'LOGOUT'}, function(response) {
+            if (response.message === 'SUCCESS') {
+                bg.console.log('back in foreground, just logged out!');
+                $('#user').addClass('hidden');
+                $('#signup .error').text('');
+                $('#signup .username').val('');
+                $('#signup').removeClass('hidden');
+            }
+        });
     });
+
 });

@@ -1,10 +1,18 @@
-account for multiple emails in friend bucket...maybe use hidden div or something
++ why does it log me in as the user i just logged out as even though i sign out of gmail in my browser...i think there's an access token cached in the background page.
 
-display email instead of firebaseUsername in sender field in history list
-ditto in the notification
++ account for multiple emails in friend bucket...maybe use hidden div or something
 
-when i log in with google the old notifications pop up! oh no!
++ check that user is in database when entering contact
 
-check that user is in database
-send link to user's email if they aren't in the database
-contact autosuggestion
++ send link to user's email if they aren't in the database
+
++ contact autosuggestion
+
+--change startup time to last login time
+--have bg message popup when history is gathered!
+
+
+--display email instead of firebaseUsername in sender field in history list
+--ditto in the notification
+
+--when i log in with google the old notifications pop up! oh no!
