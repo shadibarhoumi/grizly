@@ -99,19 +99,22 @@ $(function() {
     });
 
     $('.add-friend-submit').click(function() {
-        var emails = $('.friend-names').val().split(/[ ,]+/);
+        var names = $('.friend-names').val().split(/[ ,]+/);
+        var emails = $('.friend-emails').val().split(/[ ,]+/);
         // map emails to firebase usernames
         var firebaseUsernames = emails.map(emailToFirebaseUsername);
         var friends = new Firebase('https://grizly.firebaseio.com/users/' + firebaseUsername + '/friends');
         // each friend bucket has an array of firebase usernames and emails
-        var friendId = friends.push({firebaseUsernames: firebaseUsernames, emails: emails});
+        var friendId = friends.push({firebaseUsernames: firebaseUsernames, emails: emails, names: names});
         $('.friend-names').val('');
+        $('.friend-emails').val('');
         $('.add-friend-form').addClass('hidden');
-        console.log('not prepending an additional button!');
-        // var button = $('<button/>').html(usernames.join(' & ')).addClass('friend');
-        // button.append($('<input/>').attr('type', 'hidden').html(friendId));
-        // bg.console.log('new friend', $('.friend'));
-        // $('.friends .list').prepend(button);
+
+        // add button
+        var button = $('<button/>').html(names.join(' & ')).addClass('friend');
+        button.append($('<input/>').attr('type', 'hidden').html(friendId));
+        bg.console.log('new friend', $('.friend'));
+        $('.friends .list').prepend(button);
     });
 
     $('.friends .list').click(function(e) {
@@ -130,7 +133,6 @@ $(function() {
                                        title: title,
                                        link: currentUrl,
                                        createdAt: Date.now()});
-                bg.console.log('[POPUP]', 'pushing link', link, 'to', recipientDataRef);
             });
         });
     });
@@ -148,5 +150,22 @@ $(function() {
             }
         });
     });
+
+    // tabs
+    $('.history-tab').click(function() {
+        $('.friends').addClass('hidden');
+        $('.friends-tab').removeClass('active');
+
+        $('.history').removeClass('hidden');
+        $('.history-tab').addClass('active');
+    })
+
+    $('.friends-tab').click(function() {
+        $('.history').addClass('hidden');
+        $('.history-tab').removeClass('active');
+
+        $('.friends').removeClass('hidden');
+        $('.friends-tab').addClass('active');
+    })
 
 });

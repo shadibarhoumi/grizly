@@ -135,6 +135,6 @@ chrome.storage.sync.get('user', function(ret) {
 		console.log('[BG]', 'his firebase username is:', ret.user.firebaseUsername);
 		listen(ret.user.firebaseUsername);
 	} else {
-		console.log('[BG]', 'no ones logged in i guess i mean its not a big deal its really whatever it doesnt matter to me if nobody is using my app');
+		console.log('[BG]', 'No one is logged in.');
 	}
 });

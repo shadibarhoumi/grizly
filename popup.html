@@ -1,12 +1,13 @@
+
 <!doctype html>
 <html>
   <head>
     <title>Grizly</title>
 
-    <link rel="stylesheet" href="popup.css">
-    <script src='firebase.js'></script>
-    <script src="jquery.js"></script>
-    <script src="popup.js"></script>
+    <link rel="stylesheet" href="css/popup.css">
+    <script src='js/firebase.js'></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/popup.js"></script>
 
   </head>
 
@@ -15,23 +16,9 @@
   	<div id="signup">
   		<p class="heading">Sign Up with Grizly for Instant Link Sharing.</p>
   		<div class="error"></div>
-  		<!-- <input class="username" type="text" placeholder="username">
-  		<input class="password" type="password" placeholder="password">
-    	<div>
-        <button id="signup-button">Sign Up</button><a id="login-link" href="#">Or Log In</a>
-      </div>
-      <div> -->
         <button class="google-login">Login with Google</button>
       </div>
   	</div>
-
-  	<!-- <div id="login" class="hidden">
-  		<p class="heading">Log In to Grizly.</p>
-  		<div class="error"></div>
-  		<input class="username" type="text" placeholder="username">
-  		<input class="password" type="password" placeholder="password">
-  		<button id="login-button">Log In</button><a id="signup-link" href="#">Or Sign Up</a>
-  	</div> -->
 
   	<div id="user" class="hidden">
   		<div class="current">
@@ -39,18 +26,23 @@
   		  <button class="logout-button">Logout</button>
       </div>
 
+      <div class="tabs">
+        <a href="#" class='friends-tab active'>Friends</a>
+        <a href="#" class='history-tab'>History</a>
+      </div>
+
       <div class="friends">
-        <p>Friends</p>
         <a class="add-friend" href="#">Add Friend</a>
         <div class="add-friend-form hidden">
-          <input class="friend-names", placeholder="friend names">
+          <input class="friend-names", placeholder="Name">
+          <input class="friend-emails", placeholder="Email">
           <a class="add-friend-submit" href="#">Add!</a>
         </div>
         <ul class="list"></ul>
       </div>
 
-      <div class="history">
-        <p>History</p>
+
+      <div class="history hidden">
         <ul class="list"></ul>
       </div>
 

@@ -1,0 +1,100 @@
+body {
+	height: 400px;
+	width: 300px;
+}
+
+ul {
+	padding: 0px;
+	margin: 0px;
+}
+
+.hidden {
+	display: none;
+}
+
+.error {
+	color: red;
+}
+
+#user > div {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+}
+
+/* Friends List */
+.friend {
+	display: block;
+	border: none;
+	padding: 8px 25px;
+	width: 250px;
+	margin: 8px auto;
+	text-align: center;
+	color: #f3f8ff;
+	background: #4099ff;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-o-transition: 0.3s;
+	transition: 0.3s;
+	font-family: sans-serif;
+	font-weight: 800;
+	font-size: .8em;
+	text-decoration: none;
+	border-bottom: 0.2em solid #1c86ff;
+	position: relative;
+}
+
+.friend:hover {
+	background: #268bff;
+	color: white;
+	box-shadow: 0 0 0 1px #a6cfff;
+}
+
+/* Add Friend Form */
+.add-friend-form {
+	width: 250px;
+	height: 104px;
+	margin: 7px auto;
+	padding: 2px;
+}
+
+.add-friend-form input {
+	height: 22px;
+	margin-bottom: 4px;
+	border: solid 2px #ddd;
+	width: 241px;
+	padding: 3px;
+	font-weight: 800;
+	font-size: .8em;
+	color: #777;
+}
+
+.add-friend-submit {
+	display: block;
+	padding: 7px 25px;
+	width: 200px;
+	text-align: center;
+	color: #d7fcdb;
+	background: #31f042;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-o-transition: 0.3s;
+	transition: 0.3s;
+	font-family: sans-serif;
+	font-weight: 800;
+	font-size: .8em;
+	text-transform: uppercase;
+	text-decoration: none;
+	border-bottom: 0.2em solid #11ec25;
+	position: relative;
+}
+
+.add-friend-submit:hover {
+	background: #19ee2c;
+	color: #effef0;
+	box-shadow: 0 0 0 1px #90f799;
+}
+
+/* Tabs */
+.tabs a { color: gray; }
+.tabs a.active { color: blue; }
